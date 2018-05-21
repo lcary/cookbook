@@ -4,6 +4,7 @@ from viewflow.rest import flow, views
 
 from . import models
 from .tasks import send_hello_world_request
+from .views import CreateView
 
 
 class HelloRestFlow(Flow):
@@ -19,8 +20,8 @@ class HelloRestFlow(Flow):
 
     start = (
         flow.Start(
-            views.CreateProcessView,
-            fields=['text'])
+            CreateView,
+            actions={'get': 'list'})
         .Permission(auto_create=True)
         .Next(this.approve)
     )

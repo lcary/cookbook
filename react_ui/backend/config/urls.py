@@ -5,8 +5,11 @@ from rest_framework.schemas import get_schema_view
 from viewflow.rest import views as rest
 from viewflow.rest.schemas import SchemaGenerator
 from viewflow.rest.viewset import FlowViewSet
+from rest_framework import routers
+
 
 from hellorest.flows import HelloRestFlow
+from hellorest.views import BareCreateView
 
 
 flows_nsmap = {
@@ -15,6 +18,8 @@ flows_nsmap = {
 
 hello_urls = FlowViewSet(HelloRestFlow).urls
 
+router = routers.DefaultRouter()
+router.register(r'test', BareCreateView)
 
 urlpatterns = [
     url(r'^$', generic.RedirectView.as_view(url='/workflow/api/', permanent=False)),
@@ -34,5 +39,7 @@ urlpatterns = [
         name="task-list"),
 
     url(r'^workflow/api/',
-        include(hello_urls, namespace='helloworld')),
+        include((hello_urls, 'helloworld'), namespace='helloworld')),
+
+    url(r'^v1/', include(router.urls)),
 ]

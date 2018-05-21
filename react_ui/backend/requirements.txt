@@ -1,6 +1,7 @@
-django==1.11.4
+celery==4.1.1
+Django==2.0.4
 djangorestframework==3.7.7
+git+https://github.com/n2ygk/django-rest-framework-json-api.git@0c2675bbf43abb39fce3123ee8b406aa83da538b#egg=djangorestframework-jsonapi
 django-rest-swagger==2.1.2
-django-viewflow-pro==1.1
-django-material-pro==1.1
-
+django-material-pro==1.2.5
+django-viewflow-pro==1.2.5
